@@ -1,3 +1,49 @@
+const WIDTH = 800;
+const HEIGHT = 600;
+
+const EMPTY = 0;
+const APPLE = 1;
+const SNAKE = 2;
+const SNAKE_LEFT  = 3;
+const SNAKE_RIGHT = 4;
+const SNAKE_UP    = 5
+const SNAKE_DOWN  = 6;
+
+const PADDING = 0;
+
+const BOARD_SIZE = 20;
+const BOARD_CELL_WIDTH  = WIDTH / BOARD_SIZE;
+const BOARD_CELL_HEIGHT  = HEIGHT / BOARD_SIZE;
+
+const FPS = 60;
+
+let playingState = false;
+
+let score = 0;
+let highestScore = 0;
+
+const DIRECTIONS = {};
+DIRECTIONS[SNAKE_LEFT] =  {x : -1, y : 0};
+DIRECTIONS[SNAKE_RIGHT] =  {x : 1, y : 0};
+DIRECTIONS[SNAKE_UP] =  {x : 0, y : -1};
+DIRECTIONS[SNAKE_DOWN] =  {x : 0, y : 1};
+
+/**
+ * @param {Array<Array<Number>>} board
+ *
+ * @returns {{x:number, y:number}}
+ */
+function getRandomPos(board) {
+    let x = Math.floor(Math.random()*BOARD_SIZE);
+    let y = Math.floor(Math.random()*BOARD_SIZE);
+    while(board[y][x] != EMPTY) {
+        x = Math.floor(Math.random()*BOARD_SIZE);
+        y = Math.floor(Math.random()*BOARD_SIZE);
+    }
+
+    return { x, y };
+}
+
 /**
  * @param {Array<Array<Number>>} board
  */
